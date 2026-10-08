@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guía de HTML5, CSS y JavaScript</title>
+<style>
+:root{
+  --azul:#2563eb; --azul-osc:#1e3a8a; --fondo:#f7f9fc; --texto:#1f2937;
+  --tarjeta:#ffffff; --borde:#dbeafe; --acento:#f59e0b;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  box-sizing:border-box;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--fondo:#0f172a;--texto:#e5e7eb;--tarjeta:#1e293b;--borde:#334155;}
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--fondo);color:var(--texto);line-height:1.55;}
+header{background:linear-gradient(120deg,var(--azul-osc),var(--azul));color:#fff;padding:2rem 1rem;text-align:center;top:0;padding-top:calc(2rem + env(safe-area-inset-top,0px));}
+header h1{margin:.2rem 0;font-size:1.8rem;}
+nav{position:sticky;top:env(safe-area-inset-top,0px);background:var(--azul-osc);z-index:10;overflow-x:auto;white-space:nowrap;padding:.5rem;}
+nav a{color:#fff;text-decoration:none;margin:0 .6rem;font-size:.9rem;padding:.3rem .5rem;border-radius:5px;}
+nav a:hover{background:var(--azul);}
+main{max-width:960px;margin:0 auto;padding:1rem;}
+section{background:var(--tarjeta);border:1px solid var(--borde);border-radius:10px;padding:1.2rem 1.4rem;margin:1.2rem 0;}
+h2{color:var(--azul);border-bottom:3px solid var(--acento);display:inline-block;padding-bottom:.2rem;}
+h3{color:var(--azul-osc);}
+code,pre{background:#0f172a;color:#e2e8f0;border-radius:6px;}
+code{padding:.15rem .4rem;font-size:.9em;}
+pre{padding:.8rem;overflow-x:auto;max-width:100%;}
+table{border-collapse:collapse;width:100%;margin:.6rem 0;}
+th,td{border:1px solid var(--borde);padding:.5rem;text-align:center;}
+th{background:var(--azul);color:#fff;}
+tr:nth-child(even){background:rgba(37,99,235,.06);}
+.demo{border:2px dashed var(--acento);padding:.8rem;border-radius:8px;margin:.6rem 0;background:rgba(245,158,11,.05);}
+.demo-title{font-weight:bold;color:var(--acento);margin-bottom:.4rem;}
+ul,ol{padding-left:1.4rem;}
+figure{margin:.6rem 0;text-align:center;}
+figcaption{font-size:.85em;color:#6b7280;}
+button{background:var(--azul);color:#fff;border:none;padding:.5rem 1rem;border-radius:6px;cursor:pointer;font-size:.95rem;}
+button:hover{background:var(--azul-osc);}
+input,select,textarea{padding:.4rem;border:1px solid var(--borde);border-radius:5px;width:100%;max-width:300px;margin:.2rem 0;}
+label{font-weight:600;display:block;margin-top:.5rem;}
+footer{text-align:center;padding:1.5rem;color:#6b7280;padding-bottom:calc(1.5rem + env(safe-area-inset-bottom,0px));}
+.btn-row button{margin:.2rem;}
+.color-box{display:inline-block;width:70px;height:40px;border-radius:5px;margin:3px;color:#fff;font-size:.75rem;text-align:center;line-height:40px;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📘 Guía de HTML5, CSS3 y JavaScript</h1>
+  <p>Material de estudio — Especialidad de Programación (Bachillerato)</p>
+</header>
+
+<nav aria-label="Menú de navegación">
+  <a href="#semantica">Semántica</a>
+  <a href="#texto">Texto</a>
+  <a href="#listas">Listas</a>
+  <a href="#tablas">Tablas</a>
+  <a href="#multimedia">Multimedia</a>
+  <a href="#formularios">Formularios</a>
+  <a href="#css">CSS</a>
+  <a href="#js">JavaScript</a>
+</nav>
+
+<main>
+
+<!-- ================= SEMÁNTICA ================= -->
+<section id="semantica">
+<h2>1. Etiquetas semánticas de HTML5</h2>
+<p>Las etiquetas semánticas describen el <strong>significado</strong> de una sección, no solo su apariencia. Facilitan la accesibilidad y el SEO.</p>
+<table>
+<tr><th>Etiqueta</th><th>Uso</th></tr>
+<tr><td><code>&lt;header&gt;</code></td><td>Encabezado de página o sección</td></tr>
+<tr><td><code>&lt;nav&gt;</code></td><td>Bloque de enlaces de navegación</td></tr>
+<tr><td><code>&lt;main&gt;</code></td><td>Contenido principal (único por página)</td></tr>
+<tr><td><code>&lt;section&gt;</code></td><td>Sección temática de contenido</td></tr>
+<tr><td><code>&lt;article&gt;</code></td><td>Contenido independiente y reutilizable</td></tr>
+<tr><td><code>&lt;aside&gt;</code></td><td>Contenido complementario</td></tr>
+<tr><td><code>&lt;footer&gt;</code></td><td>Pie de página</td></tr>
+<tr><td><code>&lt;figure&gt;/&lt;figcaption&gt;</code></td><td>Imagen con descripción</td></tr>
+</table>
+<p>Esta misma página está construida usando <code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code> y <code>footer</code>.</p>
+</section>
+
+<!-- ================= TEXTO: PARRAFOS ================= -->
+<section id="texto">
+<h2>2. Párrafos y texto</h2>
+<pre><code>&lt;p&gt;Este es un párrafo de texto normal.&lt;/p&gt;
+&lt;strong&gt;Texto importante (negrita)&lt;/strong&gt;
+&lt;em&gt;Texto con énfasis (cursiva)&lt;/em&gt;
+&lt;br&gt; &lt;!-- salto de línea --&gt;
+&lt;hr&gt; &lt;!-- línea horizontal --&gt;</code></pre>
+<div class="demo">
+<p class="demo-title">Resultado:</p>
+<p>Este es un párrafo de texto normal. <strong>Texto importante.</strong> <em>Texto con énfasis.</em></p>
+<hr>
+</div>
+
+<h3>Hipervínculos</h3>
+<pre><code>&lt;a href="https://www.google.com" target="_blank"&gt;Ir a Google&lt;/a&gt;
+&lt;a href="#tablas"&gt;Ir a la sección de tablas&lt;/a&gt;
+&lt;a href="mailto:correo@ejemplo.com"&gt;Enviar correo&lt;/a&gt;</code></pre>
+<div class="demo">
+<a href="https://www.google.com" target="_blank" rel="noopener">Enlace externo (Google)</a> |
+<a href="#tablas">Enlace interno (ancla)</a> |
+<a href="mailto:correo@ejemplo.com">Enlace de correo</a>
+</div>
+
+<h3>Imágenes</h3>
+<pre><code>&lt;img src="foto.jpg" alt="Descripción de la imagen" width="200"&gt;
+&lt;figure&gt;
+  &lt;img src="grafico.png" alt="Gráfico de ventas"&gt;
+  &lt;figcaption&gt;Fig. 1 — Ventas del mes&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+<p>Atributos clave: <code>src</code> (ruta), <code>alt</code> (texto alternativo, obligatorio para accesibilidad), <code>width</code>/<code>height</code>.</p>
+</section>
+
+<!-- ================= LISTAS ================= -->
+<section id="listas">
+<h2>3. Tipos de listas</h2>
+<table>
+<tr><th>Tipo</th><th>Etiqueta</th><th>Descripción</th></tr>
+<tr><td>No ordenada</td><td><code>&lt;ul&gt;&lt;li&gt;</code></td><td>Viñetas, sin orden</td></tr>
+<tr><td>Ordenada</td><td><code>&lt;ol&gt;&lt;li&gt;</code></td><td>Numerada</td></tr>
+<tr><td>Definición</td><td><code>&lt;dl&gt;&lt;dt&gt;&lt;dd&gt;</code></td><td>Término - descripción</td></tr>
+</table>
+<div class="demo">
+<p class="demo-title">No ordenada:</p>
+<ul><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+<p class="demo-title">Ordenada:</p>
+<ol><li>Analizar</li><li>Diseñar</li><li>Programar</li></ol>
+<p class="demo-title">De definición:</p>
+<dl><dt>HTML</dt><dd>Lenguaje de marcado.</dd><dt>CSS</dt><dd>Lenguaje de estilos.</dd></dl>
+</div>
+</section>
+
+<!-- ================= TABLAS ================= -->
+<section id="tablas">
+<h2>4. Tablas — ejemplo: horario de clases</h2>
+<pre><code>&lt;table&gt;
+  &lt;tr&gt;&lt;th&gt;Hora&lt;/th&gt;&lt;th&gt;Lunes&lt;/th&gt;&lt;th&gt;Martes&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;07:00&lt;/td&gt;&lt;td&gt;Programación&lt;/td&gt;&lt;td&gt;Matemáticas&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+<table>
+<tr><th>Hora</th><th>Lunes</th><th>Martes</th><th>Miércoles</th><th>Jueves</th><th>Viernes</th></tr>
+<tr><td>07:00–08:00</td><td>Programación</td><td>Matemáticas</td><td>Inglés</td><td>Programación</td><td>Física</td></tr>
+<tr><td>08:00–09:00</td><td>Base de Datos</td><td>Programación</td><td>Redes</td><td>Lenguaje</td><td>Programación</td></tr>
+<tr><td>09:00–10:00</td><td>Educación Física</td><td>Química</td><td>Programación</td><td>Base de Datos</td><td>Tutoría</td></tr>
+</table>
+<p>Etiquetas: <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code> (fila), <code>&lt;th&gt;</code> (encabezado), <code>&lt;td&gt;</code> (celda). Atributos útiles: <code>colspan</code> y <code>rowspan</code> para unir celdas.</p>
+</section>
+
+<!-- ================= MULTIMEDIA ================= -->
+<section id="multimedia">
+<h2>5. Video</h2>
+<pre><code>&lt;video controls width="320" poster="miniatura.jpg"&gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+  Tu navegador no soporta video.
+&lt;/video&gt;</code></pre>
+<p>Atributos: <code>controls</code>, <code>autoplay</code>, <code>loop</code>, <code>muted</code>, <code>poster</code>.</p>
+</section>
+
+<!-- ================= FORMULARIOS ================= -->
+<section id="formularios">
+<h2>6. Formularios</h2>
+<table>
+<tr><th>Etiqueta/tipo</th><th>Descripción</th></tr>
+<tr><td><code>&lt;input type="text"&gt;</code></td><td>Texto corto</td></tr>
+<tr><td><code>&lt;input type="email"&gt;</code></td><td>Correo, valida formato</td></tr>
+<tr><td><code>&lt;input type="password"&gt;</code></td><td>Contraseña oculta</td></tr>
+<tr><td><code>&lt;input type="number"&gt;</code></td><td>Solo números</td></tr>
+<tr><td><code>&lt;input type="radio"&gt;</code></td><td>Selección única</td></tr>
+<tr><td><code>&lt;input type="checkbox"&gt;</code></td><td>Selección múltiple</td></tr>
+<tr><td><code>&lt;select&gt;&lt;option&gt;</code></td><td>Lista desplegable</td></tr>
+<tr><td><code>&lt;textarea&gt;</code></td><td>Texto largo</td></tr>
+<tr><td><code>&lt;button&gt;</code></td><td>Botón de acción</td></tr>
+<tr><td><code>&lt;label&gt;</code></td><td>Etiqueta para un campo</td></tr>
+</table>
+<p><strong>Atributos de validación:</strong> <code>required</code>, <code>minlength</code>, <code>maxlength</code>, <code>min</code>/<code>max</code>, <code>pattern</code>, <code>placeholder</code>.</p>
+<div class="demo">
+<p class="demo-title">Formulario de ejemplo con validación HTML5:</p>
+<form onsubmit="alert('Formulario válido, enviado correctamente'); return false;">
+  <label for="nom">Nombre:</label>
+  <input id="nom" type="text" required minlength="3" placeholder="Tu nombre">
+  <label for="mail">Correo:</label>
+  <input id="mail" type="email" required placeholder="correo@dominio.com">
+  <label for="edad">Edad:</label>
+  <input id="edad" type="number" min="14" max="20">
+  <label>Especialidad:</label>
+  <select>
+    <option>Programación</option><option>Contabilidad</option><option>Electrónica</option>
+  </select>
+  <label><input type="checkbox" style="width:auto;display:inline-block" required> Acepto los términos</label>
+  <button type="submit">Enviar</button>
+</form>
+</div>
+</section>
+
+<!-- ================= CSS ================= -->
+<section id="css">
+<h2>7. Selectores, unidades y colores en CSS</h2>
+<h3>Selectores</h3>
+<pre><code>p { }         /* por etiqueta */
+.clase { }    /* por clase */
+#id { }       /* por id único */
+a:hover { }   /* pseudoclase */
+div p { }     /* descendiente */</code></pre>
+
+<h3>Unidades de medida</h3>
+<table>
+<tr><th>Unidad</th><th>Tipo</th><th>Ejemplo</th></tr>
+<tr><td>px</td><td>Absoluta</td><td>font-size:16px;</td></tr>
+<tr><td>%</td><td>Relativa al padre</td><td>width:50%;</td></tr>
+<tr><td>em</td><td>Relativa al elemento</td><td>padding:1.5em;</td></tr>
+<tr><td>rem</td><td>Relativa a la raíz</td><td>margin:2rem;</td></tr>
+<tr><td>vw/vh</td><td>Relativa a pantalla</td><td>height:100vh;</td></tr>
+</table>
+
+<h3>Colores</h3>
+<div class="demo">
+<div class="color-box" style="background:#2563eb">HEX</div>
+<div class="color-box" style="background:rgb(245,158,11)">RGB</div>
+<div class="color-box" style="background:hsl(150,60%,40%)">HSL</div>
+<div class="color-box" style="background:crimson">Nombre</div>
+</div>
+<pre><code>color: #2563eb;
+background: rgb(245,158,11);
+border-color: hsl(150,60%,40%);
+color: crimson;</code></pre>
+
+<h3>Estilos a títulos, párrafos, enlaces y botones</h3>
+<pre><code>h1 { color:#1e3a8a; text-align:center; }
+p  { font-size:1rem; line-height:1.6; }
+a  { color:#2563eb; text-decoration:none; }
+a:hover { text-decoration:underline; }
+button { background:#2563eb; color:#fff; border:none; border-radius:6px; padding:.5em 1em; }
+button:hover { background:#1e3a8a; }</code></pre>
+<div class="demo btn-row">
+<button>Botón normal</button>
+<button style="background:var(--acento)">Botón secundario</button>
+</div>
+</section>
+
+<!-- ================= JS ================= -->
+<section id="js">
+<h2>8. Fundamentos de JavaScript</h2>
+
+<h3>alert()</h3>
+<p>Muestra un mensaje emergente al usuario.</p>
+<pre><code>alert("¡Hola estudiante!");</code></pre>
+<div class="demo"><button onclick="alert('¡Hola estudiante!')">Probar alert()</button></div>
+
+<h3>document.write()</h3>
+<p>Escribe directamente en el documento HTML (uso limitado, no recomendado en páginas grandes).</p>
+<pre><code>document.write("Texto escrito con JavaScript");</code></pre>
+<div class="demo"><button onclick="document.getElementById('salidaWrite').innerHTML='Texto agregado (simulando document.write)'">Probar</button>
+<p id="salidaWrite"><em>(resultado aparecerá aquí)</em></p></div>
+
+<h3>prompt()</h3>
+<p>Pide un dato al usuario mediante un cuadro de diálogo.</p>
+<pre><code>let nombre = prompt("¿Cuál es tu nombre?");
+alert("Hola " + nombre);</code></pre>
+<div class="demo"><button onclick="let n=prompt('¿Cuál es tu nombre?'); if(n) alert('Hola '+n);">Probar prompt()</button></div>
+
+<h3>Variables, condicionales y funciones (base)</h3>
+<pre><code>let edad = 16;
+if (edad >= 15) {
+  console.log("Eres estudiante de bachillerato");
+}
+
+function saludar(nombre) {
+  return "Hola, " + nombre;
+}</code></pre>
+</section>
+
+</main>
+
+<footer>
+  <p>Guía elaborada para estudiantes de bachillerato — especialidad de Programación 💻</p>
+</footer>
+
+</body>
+</html>
